@@ -32,7 +32,7 @@ th, td {
     color: green;
 }
 
-.create{
+.create, .another{
     padding-left: 350px;
 }
 
@@ -40,13 +40,11 @@ fieldset{
     width: 500px;
     margin: auto;
 }
-input[type = number] {
-    padding: 5px 10px 5px 10px;
-    float: right;
-}
 
 input[type = text] {
-    padding: 5px 10px 5px 10px;
+    margin: auto;
+    width: 330px;
+    padding: 10px 10px 5px 10px;
     float: right;
 }
 
