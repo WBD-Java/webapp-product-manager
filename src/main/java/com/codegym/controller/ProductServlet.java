@@ -24,6 +24,43 @@ public class ProductServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
+
+        switch (action) {
+            case "edit":
+                updateProduct(request, response);
+                break;
+        }
+    }
+
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price").substring(3));
+        String description = request.getParameter("description");
+        String producer = request.getParameter("producer");
+
+        Product product = this.productService.findById(id);
+        RequestDispatcher dispatcher;
+        if (product == null) {
+            dispatcher = request.getRequestDispatcher("error.404.jsp");
+        } else {
+            product.setName(name);
+            product.setPrice(price);
+            product.setDescription(description);
+            product.setProducer(producer);
+            this.productService.update(id, product);
+            request.setAttribute("message", "Product Information was update");
+            request.setAttribute("product", product);
+            dispatcher = request.getRequestDispatcher("product/edit.jsp");
+        }
+
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -34,9 +71,33 @@ public class ProductServlet extends HttpServlet {
         }
 
         switch (action) {
+            case "edit":
+                showUpdateForm(request, response);
+                break;
             default:
                 list(request, response);
                 break;
+        }
+    }
+
+    private void showUpdateForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.findById(id);
+        RequestDispatcher dispatcher;
+
+        if (product == null) {
+            dispatcher = request.getRequestDispatcher("error.404.jsp");
+        } else {
+            request.setAttribute("product", product);
+            dispatcher = request.getRequestDispatcher("product/edit.jsp");
+        }
+
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
