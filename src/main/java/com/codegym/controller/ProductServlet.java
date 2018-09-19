@@ -24,6 +24,35 @@ public class ProductServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
+
+        switch (action) {
+            case "create":
+                createCustomer(request, response);
+                break;
+        }
+    }
+
+    private void createCustomer(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        String description = request.getParameter("description");
+        String producer = request.getParameter("producer");
+        int id = (int) (Math.random() * 1000);
+
+        Product product = new Product(id, name, price, description, producer);
+        this.productService.save(product);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product/create.jsp");
+        request.setAttribute("message", "New product was created");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -34,10 +63,25 @@ public class ProductServlet extends HttpServlet {
         }
 
         switch (action) {
+            case "create":
+                showCreateForm(request, response);
+                break;
             default:
                 list(request, response);
                 break;
         }
+    }
+
+    private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void list(HttpServletRequest request, HttpServletResponse response) {
@@ -46,7 +90,7 @@ public class ProductServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("product/list.jsp");
         try {
-            dispatcher.forward(request,response);
+            dispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

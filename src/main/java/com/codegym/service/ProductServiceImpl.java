@@ -22,4 +22,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findAll() {
         return new ArrayList<>(products.values());
     }
+
+    @Override
+    public void save(Product product) {
+        products.put(product.getId(), product);
+    }
 }
