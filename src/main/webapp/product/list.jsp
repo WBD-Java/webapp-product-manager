@@ -15,23 +15,32 @@
 <body>
 <h1>Products List</h1>
 <a href="/products?action=create">Create Product</a>
-<table>
+
+<form action="/products?action=search" method="post">
+    <table>
+        <tr>
+            <td><input type="text" name="name" placeholder="enter name you want search"></td>
+            <td><span><input type="submit" value="Search"></span></td>
+        </tr>
+    </table>
+</form>
+<table class="tableList">
     <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Producer</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th class="tableList">Name</th>
+        <th class="tableList">Price</th>
+        <th class="tableList">Description</th>
+        <th class="tableList">Producer</th>
+        <th class="tableList">Edit</th>
+        <th class="tableList">Delete</th>
     </tr>
     <c:forEach items='${requestScope["products"]}' var="product">
         <tr>
-            <td><<a href="/products?action=view&id=${product.getId()}">${product.getName()}</a></td>
-            <td>${product.getPrice()} VND</td>
-            <td>${product.getDescription()}</td>
-            <td>${product.getProducer()}</td>
-            <td><a href="/products?action=edit&id=${product.getId()}">Edit</a></td>
-            <td><a href="/products?action=delete&id=${product.getId()}">Delete</a></td>
+            <td class="tableList"><a href="/products?action=view&id=${product.getId()}">${product.getName()}</a></td>
+            <td class="tableList">&#36 ${product.getPrice()}</td>
+            <td class="tableList">${product.getDescription()}</td>
+            <td class="tableList">${product.getProducer()}</td>
+            <td class="tableList"><a href="/products?action=edit&id=${product.getId()}">Edit</a></td>
+            <td class="tableList"><a href="/products?action=delete&id=${product.getId()}">Delete</a></td>
         </tr>
     </c:forEach>
 
