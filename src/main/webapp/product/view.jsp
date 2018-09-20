@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <th>Producer:</th>
-            <td>${requestScope["product"].getProducer()}></td>
+            <td>${requestScope["product"].getProducer()}</td>
         </tr>
     </table>
 </fieldset>
