@@ -15,12 +15,12 @@
 </head>
 <body>
 <h1>Update Product</h1>
-<p class="create">
+<p class="another">
     <c:if test='${requestScope["message"]!=null}'>
         <span class="message">${requestScope["message"]}</span>
     </c:if>
 </p>
-<p class="create">
+<p class="another">
     <a href="/products">Back to Product list</a>
 </p>
 <form method="post">
