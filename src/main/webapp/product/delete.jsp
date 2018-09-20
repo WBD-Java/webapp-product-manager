@@ -23,19 +23,19 @@
         <table>
             <tr>
                 <th>Name:</th>
-                <td><input type="text" readonly name="name" value="${requestScope["product"].getName()}"></td>
+                <td>${requestScope["product"].getName()}</td>
             </tr>
             <tr>
                 <th>Price:</th>
-                <td><input type="text" readonly name="price" value="&#36 ${requestScope["product"].getPrice()}"></td>
+                <td>&#36 ${requestScope["product"].getPrice()}</td>
             </tr>
             <tr>
                 <th>Description:</th>
-                <td><input type="text" readonly name="description" value="${requestScope["product"].getDescription()}"></td>
+                <td>${requestScope["product"].getDescription()}</td>
             </tr>
             <tr>
                 <th>Producer:</th>
-                <td><input type="text" readonly name="producer" value="${requestScope["product"].getProducer()}"></td>
+                <td>${requestScope["product"].getProducer()}</td>
             </tr>
             <tr>
                 <td></td>
