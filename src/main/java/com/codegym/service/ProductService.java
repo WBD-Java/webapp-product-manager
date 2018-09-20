@@ -9,6 +9,8 @@ public interface ProductService {
 
     Product findById(int id);
 
+    List<Product> findByContainName(String name);
+
     void save(Product product);
 
     void update(int id, Product product);

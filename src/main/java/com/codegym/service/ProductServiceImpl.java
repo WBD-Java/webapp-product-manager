@@ -29,6 +29,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> findByContainName(String name) {
+        List<Product> listProductContainName = new ArrayList<>();
+        for (Product product : findAll()) {
+            if (product.getName().toLowerCase().contains(name.toLowerCase())) {
+                listProductContainName.add(product);
+            }
+        }
+        return listProductContainName;
+    }
+
+    @Override
     public void save(Product product) {
         products.put(product.getId(), product);
     }
