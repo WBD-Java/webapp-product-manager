@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <th>Price:</th>
-                <td><input type="number" name="price" placeholder="Enter Price (VND)"></td>
+                <td><input type="text" name="price" placeholder="Enter Price (VND)"></td>
             </tr>
             <tr>
                 <th>Description:</th>
