@@ -25,6 +25,17 @@ public class ProductController {
         return "/product/list";
     }
 
+    @GetMapping(value = "/product/view")
+    public String viewProduct(@RequestParam("id") int id, Model model) {
+        Product product = this.productService.findById(id);
+        if (product == null) {
+            return "error.404";
+        }
+
+        model.addAttribute("product", product);
+        return "/product/view";
+    }
+
     @GetMapping(value = "/product/create")
     public String showFormCreate(Model model) {
         model.addAttribute("product", new Product());
