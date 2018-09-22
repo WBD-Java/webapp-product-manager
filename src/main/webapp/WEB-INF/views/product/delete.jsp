@@ -48,7 +48,7 @@
 <a href="/products">Back to list Product</a>
 
 <fieldset>
-    <legend><h2>Edit new Product</h2></legend>
+    <legend><h2>Product Information</h2></legend>
     <form:form modelAttribute="product" action="/product/delete/${product.id}" method="post">
         <table>
             <tr>
