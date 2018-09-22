@@ -17,6 +17,11 @@
             margin: auto;
         }
 
+        .notity{
+            margin-top: 5px;
+            color: green;
+        }
+
         h2{
             text-align: center;
         }
@@ -38,6 +43,9 @@
 <body>
 <h1>Product List</h1>
 <a href="/product/create">Create new Product</a>
+<div class="notity">
+    <span>${messgae}</span>
+</div>
 <h2>Product List</h2>
 <table class="list">
     <thead>
