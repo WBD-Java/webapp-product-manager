@@ -71,7 +71,7 @@
             </tr>
             <tr>
                 <th></th>
-                <td><input type="submit" value="Create Product"></td>
+                <td><input type="submit" value="Update Product"></td>
             </tr>
         </table>
     </form:form>
