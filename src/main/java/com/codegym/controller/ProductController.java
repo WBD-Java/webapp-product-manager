@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,9 +32,10 @@ public class ProductController {
     }
 
     @PostMapping(value = "/product/save")
-    public String createProduct(Product product) {
-        product.setId((int) (Math.random()*1000));
+    public String createProduct(Product product, RedirectAttributes redirect) {
+        product.setId((int) (Math.random() * 1000));
         productService.save(product);
+        redirect.addFlashAttribute("messgae", "Product " + product.getName() + " was create successfully!");
         return "redirect:/products";
     }
 
@@ -51,11 +53,33 @@ public class ProductController {
     }
 
     @PostMapping("product/update/{id}")
-    public ModelAndView updateProduct(@PathVariable("id")int id, Product product) {
+    public ModelAndView updateProduct(@PathVariable("id") int id, Product product) {
         productService.update(id, product);
         ModelAndView modelAndView = new ModelAndView("/product/edit");
         modelAndView.addObject("product", product);
-        modelAndView.addObject("messages", "Product updated successfully");
+        modelAndView.addObject("messages", "Product updated successfully!");
         return modelAndView;
+    }
+
+    @GetMapping("/product/delete")
+    public ModelAndView showFormDelete(@RequestParam("id") int id) {
+        Product product = this.productService.findById(id);
+        ModelAndView modelAndView;
+
+        if (product == null) {
+            modelAndView = new ModelAndView("error.404");
+        }
+
+        modelAndView = new ModelAndView("/product/delete");
+        modelAndView.addObject("product", product);
+        return modelAndView;
+    }
+
+    @PostMapping("/product/delete/{id}")
+    public ModelAndView removeProduct(@PathVariable("id") int id, RedirectAttributes redirect) {
+        Product product = this.productService.findById(id);
+        productService.remove(id);
+        redirect.addFlashAttribute("messgae", "Product " + product.getName() + " was delete successfully!");
+        return new ModelAndView("redirect:/products");
     }
 }
