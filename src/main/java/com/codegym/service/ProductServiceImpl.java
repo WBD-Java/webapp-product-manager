@@ -38,4 +38,9 @@ public class ProductServiceImpl implements ProductService {
         products.put(id, product);
 
     }
+
+    @Override
+    public void remove(int id) {
+        products.remove(id);
+    }
 }
