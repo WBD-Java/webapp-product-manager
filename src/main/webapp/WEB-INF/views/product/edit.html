@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="layout::head"></head>
+    <title>Update Product</title>
+</head>
+<body>
+<h1>Edit Product</h1>
+<a href="/products">Back to list Product</a>
+<div class="notity">
+    <th:block th:if="${messages}">
+        <span th:text="${messages}"></span>
+    </th:block>
+</div>
+<fieldset>
+    <legend><h2>Edit new Product</h2></legend>
+    <form th:action="@{/product/update/__${product.id}__}" th:object="${product}" method="post">
+        <table>
+            <tr>
+                <th>Name</th>
+                <td><input type="text" th:field="*{name}" /></td>
+            </tr><tr>
+            <th>Price</th>
+            <td><input type="text" th:field="*{price}"/></td>
+        </tr><tr>
+            <th>Description</th>
+            <td><input type="text" th:field="*{description}"/></td>
+        </tr>
+            <tr>
+                <th>Producer</th>
+                <td><input type="text" th:field="*{producer}" /></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" value="Update Product"></td>
+            </tr>
+        </table>
+    </form>
+</fieldset>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Information</title>
+    <head th:replace="layout::head"></head>
+</head>
+<body>
+<h1>Product Information</h1>
+<a href="/products">Back to list Product</a>
+
+<fieldset>
+    <legend><h2>Product Information</h2></legend>
+    <table>
+        <tr>
+            <th>Name</th>
+            <td><input readonly th:value="${product.name}"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td><input readonly th:value="'&#36 ' + ${product.price}"></td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td><input readonly th:value="${product.description}"></td>
+        </tr>
+        <tr>
+            <th>Producer</th>
+            <td><input readonly th:value="${product.producer}"></td>
+        </tr>
+    </table>
+    <table class="choose">
+        <tr>
+            <td class="choose"><a th:href="@{/product/edit(id=${product.id})}"><input type="submit" value="Edit product"/></a></td>
+            <td class="choose"><a th:href="@{/product/delete(id=${product.id})}"><input type="submit" value="Delete product"/></a></td>
+        </tr>
+    </table>
+</fieldset>
+</body>
+</html>
